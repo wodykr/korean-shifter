@@ -1,0 +1,326 @@
+// !$*UTF8*$!
+{
+archiveVersion = 1;
+classes = {};
+objectVersion = 55;
+objects = {
+
+/* Begin PBXBuildFile section */
+1A36D8C1E89E47CF89A1EAA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D773DE3C6D456497E902F4 /* AppDelegate.swift */; };
+7CB95CFDBE9C4DC0ADE8CF21 /* EventTap.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC73B28E89242118AB28726 /* EventTap.swift */; };
+5C341331BB4D49A594621300 /* InputSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BA05D510FD444AB532E42E /* InputSwitch.swift */; };
+855A67A66EB34520BFF4998A /* TinyHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = D609DC7F30924CF9947A7951 /* TinyHUD.swift */; };
+91B1C999EC3346EC89C6F8B7 /* StatusMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A62F60807A14083A2956962 /* StatusMenu.swift */; };
+8F58E71B8041475DBAF3C714 /* Permissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C6380C71314CBD8B631E71 /* Permissions.swift */; };
+8E97A1103C7B44BEB23BDDEB /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1875F912AF1546D78AAF7A1D /* Settings.swift */; };
+B9BF720EA8B045E291688D3C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCE368155FF45068433A5CC /* main.swift */; };
+	3ACA04497B334402BA3D84DC /* SecureInputMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8B66B54F0F4A6690BF03A3 /* SecureInputMonitor.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+28D773DE3C6D456497E902F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+FBC73B28E89242118AB28726 /* EventTap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTap.swift; sourceTree = "<group>"; };
+C1BA05D510FD444AB532E42E /* InputSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputSwitch.swift; sourceTree = "<group>"; };
+D609DC7F30924CF9947A7951 /* TinyHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinyHUD.swift; sourceTree = "<group>"; };
+7A62F60807A14083A2956962 /* StatusMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusMenu.swift; sourceTree = "<group>"; };
+26C6380C71314CBD8B631E71 /* Permissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Permissions.swift; sourceTree = "<group>"; };
+1875F912AF1546D78AAF7A1D /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+ADCE368155FF45068433A5CC /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+00A5E04E8D374942938007AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+79FA0E95176246B2BB88CBCA /* ShiftSpaceSwitcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShiftSpaceSwitcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
+	AF8B66B54F0F4A6690BF03A3 /* SecureInputMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureInputMonitor.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+A822FFC2453049E4B6B71D7E /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = ( ); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+4DEFBAB6E7E2439BA74E47D0 = {
+isa = PBXGroup;
+children = (
+E07607169E1E488786F6358C /* ShiftSpaceSwitcher */,
+28E6F6B3A6554733A9BC61F5 /* Products */,
+);
+sourceTree = "<group>";
+};
+E07607169E1E488786F6358C /* ShiftSpaceSwitcher */ = {
+isa = PBXGroup;
+children = (
+28D773DE3C6D456497E902F4 /* AppDelegate.swift */,
+FBC73B28E89242118AB28726 /* EventTap.swift */,
+C1BA05D510FD444AB532E42E /* InputSwitch.swift */,
+D609DC7F30924CF9947A7951 /* TinyHUD.swift */,
+7A62F60807A14083A2956962 /* StatusMenu.swift */,
+26C6380C71314CBD8B631E71 /* Permissions.swift */,
+1875F912AF1546D78AAF7A1D /* Settings.swift */,
+ADCE368155FF45068433A5CC /* main.swift */,
+00A5E04E8D374942938007AC /* Info.plist */,
+);
+path = ShiftSpaceSwitcher;
+sourceTree = "<group>";
+};
+28E6F6B3A6554733A9BC61F5 /* Products */ = {
+isa = PBXGroup;
+children = (
+79FA0E95176246B2BB88CBCA /* ShiftSpaceSwitcher.app */,
+);
+name = Products;
+sourceTree = "<group>";
+};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+7C2DE018DD384A2AB0AE23D4 /* ShiftSpaceSwitcher */ = {
+isa = PBXNativeTarget;
+buildConfigurationList = BC03F6ADFD734A09A2FCCD02 /* Build configuration list for PBXNativeTarget "ShiftSpaceSwitcher" */;
+buildPhases = (
+12AB631DC5B84A51850D1440 /* Sources */,
+A822FFC2453049E4B6B71D7E /* Frameworks */,
+ABDAA20B1C2D4D439D6695C5 /* Resources */,
+);
+buildRules = ( );
+dependencies = ( );
+name = ShiftSpaceSwitcher;
+productName = ShiftSpaceSwitcher;
+productReference = 79FA0E95176246B2BB88CBCA /* ShiftSpaceSwitcher.app */;
+productType = "com.apple.product-type.application";
+};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+784701CC6B0844D2A34EE376 /* Project object */ = {
+isa = PBXProject;
+attributes = {
+LastSwiftUpdateCheck = 1500;
+LastUpgradeCheck = 1500;
+ORGANIZATIONNAME = "";
+TargetAttributes = {
+7C2DE018DD384A2AB0AE23D4 = {
+CreatedOnToolsVersion = 15.0;
+};
+};
+};
+buildConfigurationList = FFE7BDCC8A5F401B82B4BAC4 /* Build configuration list for PBXProject "ShiftSpaceSwitcher" */;
+compatibilityVersion = "Xcode 14.0";
+developmentRegion = en;
+hasScannedForEncodings = 0;
+knownRegions = (
+en,
+);
+mainGroup = 4DEFBAB6E7E2439BA74E47D0;
+productRefGroup = 28E6F6B3A6554733A9BC61F5 /* Products */;
+projectDirPath = "";
+projectRoot = "";
+targets = (
+7C2DE018DD384A2AB0AE23D4 /* ShiftSpaceSwitcher */,
+);
+};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+ABDAA20B1C2D4D439D6695C5 /* Resources */ = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = ( ); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+12AB631DC5B84A51850D1440 /* Sources */ = {
+isa = PBXSourcesBuildPhase;
+buildActionMask = 2147483647;
+files = (
+1A36D8C1E89E47CF89A1EAA5 /* AppDelegate.swift in Sources */,
+7CB95CFDBE9C4DC0ADE8CF21 /* EventTap.swift in Sources */,
+5C341331BB4D49A594621300 /* InputSwitch.swift in Sources */,
+855A67A66EB34520BFF4998A /* TinyHUD.swift in Sources */,
+91B1C999EC3346EC89C6F8B7 /* StatusMenu.swift in Sources */,
+8F58E71B8041475DBAF3C714 /* Permissions.swift in Sources */,
+8E97A1103C7B44BEB23BDDEB /* Settings.swift in Sources */,
+B9BF720EA8B045E291688D3C /* main.swift in Sources */,
+);
+runOnlyForDeploymentPostprocessing = 0;
+};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+EA27F19BAB934C7CAF5BADFA /* Debug */ = {
+isa = XCBuildConfiguration;
+buildSettings = {
+ALWAYS_SEARCH_USER_PATHS = NO;
+CLANG_ANALYZER_NONNULL = YES;
+CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+CLANG_ENABLE_MODULES = YES;
+CLANG_ENABLE_OBJC_ARC = YES;
+CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+CLANG_WARN_BOOL_CONVERSION = YES;
+CLANG_WARN_COMMA = YES;
+CLANG_WARN_CONSTANT_CONVERSION = YES;
+CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+CLANG_WARN_EMPTY_BODY = YES;
+CLANG_WARN_ENUM_CONVERSION = YES;
+CLANG_WARN_INFINITE_RECURSION = YES;
+CLANG_WARN_INT_CONVERSION = YES;
+CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+CLANG_WARN_STRICT_PROTOTYPES = YES;
+CLANG_WARN_SUSPICIOUS_MOVE = YES;
+CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+CODE_SIGN_STYLE = Automatic;
+COMBINE_HIDPI_IMAGES = YES;
+COPY_PHASE_STRIP = NO;
+CURRENT_PROJECT_VERSION = 1;
+DEVELOPMENT_TEAM = "";
+ENABLE_STRICT_OBJC_MSGSEND = YES;
+ENABLE_TESTABILITY = YES;
+GCC_C_LANGUAGE_STANDARD = gnu17;
+GCC_DYNAMIC_NO_PIC = NO;
+GCC_NO_COMMON_BLOCKS = YES;
+GCC_OPTIMIZATION_LEVEL = 0;
+GCC_PREPROCESSOR_DEFINITIONS = (
+"DEBUG=1",
+"$(inherited)",
+);
+GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+GCC_WARN_UNDECLARED_SELECTOR = YES;
+GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+GCC_WARN_UNUSED_FUNCTION = YES;
+GCC_WARN_UNUSED_VARIABLE = YES;
+MACOSX_DEPLOYMENT_TARGET = 13.0;
+MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+ONLY_ACTIVE_ARCH = YES;
+PRODUCT_NAME = "$(TARGET_NAME)";
+SDKROOT = macosx;
+SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+SWIFT_EMIT_LOC_STRINGS = YES;
+SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+SWIFT_VERSION = 5.0;
+VERSIONING_SYSTEM = "apple-generic";
+};
+name = Debug;
+};
+5E75FCB3AE60408D9074BCB0 /* Release */ = {
+isa = XCBuildConfiguration;
+buildSettings = {
+ALWAYS_SEARCH_USER_PATHS = NO;
+CLANG_ANALYZER_NONNULL = YES;
+CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+CLANG_ENABLE_MODULES = YES;
+CLANG_ENABLE_OBJC_ARC = YES;
+CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+CLANG_WARN_BOOL_CONVERSION = YES;
+CLANG_WARN_COMMA = YES;
+CLANG_WARN_CONSTANT_CONVERSION = YES;
+CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+CLANG_WARN_EMPTY_BODY = YES;
+CLANG_WARN_ENUM_CONVERSION = YES;
+CLANG_WARN_INFINITE_RECURSION = YES;
+CLANG_WARN_INT_CONVERSION = YES;
+CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+CLANG_WARN_STRICT_PROTOTYPES = YES;
+CLANG_WARN_SUSPICIOUS_MOVE = YES;
+CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+CODE_SIGN_STYLE = Automatic;
+COMBINE_HIDPI_IMAGES = YES;
+COPY_PHASE_STRIP = NO;
+CURRENT_PROJECT_VERSION = 1;
+DEVELOPMENT_TEAM = "";
+ENABLE_NS_ASSERTIONS = NO;
+ENABLE_STRICT_OBJC_MSGSEND = YES;
+GCC_C_LANGUAGE_STANDARD = gnu17;
+GCC_NO_COMMON_BLOCKS = YES;
+GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+GCC_WARN_UNDECLARED_SELECTOR = YES;
+GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+GCC_WARN_UNUSED_FUNCTION = YES;
+GCC_WARN_UNUSED_VARIABLE = YES;
+MACOSX_DEPLOYMENT_TARGET = 13.0;
+MTL_ENABLE_DEBUG_INFO = NO;
+PRODUCT_NAME = "$(TARGET_NAME)";
+SDKROOT = macosx;
+SWIFT_COMPILATION_MODE = wholemodule;
+SWIFT_EMIT_LOC_STRINGS = YES;
+SWIFT_OPTIMIZATION_LEVEL = "-O";
+SWIFT_VERSION = 5.0;
+VERSIONING_SYSTEM = "apple-generic";
+};
+name = Release;
+};
+8033FE1FABA04441857F4092 /* Debug */ = {
+isa = XCBuildConfiguration;
+buildSettings = {
+ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+CODE_SIGN_ENTITLEMENTS = "";
+CODE_SIGN_STYLE = Automatic;
+COMBINE_HIDPI_IMAGES = YES;
+INFOPLIST_FILE = ShiftSpaceSwitcher/Info.plist;
+LD_RUNPATH_SEARCH_PATHS = (
+"$(inherited)",
+"@executable_path/../Frameworks",
+);
+MACOSX_DEPLOYMENT_TARGET = 13.0;
+PRODUCT_BUNDLE_IDENTIFIER = com.example.ShiftSpaceSwitcher;
+PRODUCT_NAME = "$(TARGET_NAME)";
+SWIFT_VERSION = 5.0;
+};
+name = Debug;
+};
+0072EA9BD3E646E5B1146082 /* Release */ = {
+isa = XCBuildConfiguration;
+buildSettings = {
+ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+CODE_SIGN_ENTITLEMENTS = "";
+CODE_SIGN_STYLE = Automatic;
+COMBINE_HIDPI_IMAGES = YES;
+INFOPLIST_FILE = ShiftSpaceSwitcher/Info.plist;
+LD_RUNPATH_SEARCH_PATHS = (
+"$(inherited)",
+"@executable_path/../Frameworks",
+);
+MACOSX_DEPLOYMENT_TARGET = 13.0;
+PRODUCT_BUNDLE_IDENTIFIER = com.example.ShiftSpaceSwitcher;
+PRODUCT_NAME = "$(TARGET_NAME)";
+SWIFT_VERSION = 5.0;
+};
+name = Release;
+};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+FFE7BDCC8A5F401B82B4BAC4 /* Build configuration list for PBXProject "ShiftSpaceSwitcher" */ = {
+isa = XCConfigurationList;
+buildConfigurations = (
+EA27F19BAB934C7CAF5BADFA /* Debug */,
+5E75FCB3AE60408D9074BCB0 /* Release */,
+);
+defaultConfigurationIsVisible = 0;
+defaultConfigurationName = Release;
+};
+BC03F6ADFD734A09A2FCCD02 /* Build configuration list for PBXNativeTarget "ShiftSpaceSwitcher" */ = {
+isa = XCConfigurationList;
+buildConfigurations = (
+8033FE1FABA04441857F4092 /* Debug */,
+0072EA9BD3E646E5B1146082 /* Release */,
+);
+defaultConfigurationIsVisible = 0;
+defaultConfigurationName = Release;
+};
+/* End XCConfigurationList section */
+
+};
+rootObject = 784701CC6B0844D2A34EE376 /* Project object */;
+}
