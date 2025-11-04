@@ -1,22 +1,22 @@
 # Korean Shifter
 
-Korean Shifter is a lightweight macOS menu bar agent that forces Hangul/English switching to the **left Shift + Space** combination. It observes the shortcut via a CGEvent tap and uses the TIS (Text Input Source) API to toggle between Korean and English input sources. The app requires both Input Monitoring and Accessibility permissions so the tap can consume the space keystroke without leaving extra blanks.
+Korean Shifter는 **왼쪽 Shift + Space** 키 조합으로 한/영 전환을 할 수 있게 해주는 가벼운 macOS 메뉴바 앱입니다. CGEvent tap을 통해 키보드 이벤트를 감지하고 TIS (Text Input Source) API를 사용하여 한글과 영어 입력 소스를 직접 전환합니다. 트리거 키를 누를 때 불필요한 공백이 입력되지 않도록 Input Monitoring과 Accessibility 권한이 모두 필요합니다.
 
-> The Xcode project file and sources still live under the historical `ShiftSpaceSwitcher` directories.
+> Xcode 프로젝트 파일과 소스 코드는 이전 이름인 `ShiftSpaceSwitcher` 디렉토리에 있습니다.
 
-## Features
+## 주요 기능
 
-- ✅ Watches only the left shift key (`keyCode 56`) and the space bar (`keyCode 49`) to prevent accidental toggles.
-- ✅ Uses direct TIS (Text Input Source) API for reliable switching - no synthetic events required.
-- ✅ Requires both Input Monitoring and Accessibility permissions to capture and consume the shortcut reliably.
-- ✅ Hardened by ENG/KOR whitelists. If the current machine does not provide a supported English/Korean pair, the menu is dimmed and the trigger is ignored.
-- ✅ Built-in multi-tap mode lets you keep Shift held and tap Space repeatedly (90 ms debounce).
-- ✅ Tiny HUD overlay that flashes "A" or "가" for 0.45 seconds when enabled.
-- ✅ Secure Input detection (e.g., password fields) pauses switching and updates the status icon tooltip.
-- ✅ Automatic recovery from tap timeouts with `.tapDisabledByTimeout` and `.tapDisabledByUserInput` events.
-- ✅ Login item support for automatic launch on macOS startup (no additional permissions required).
+- ✅ 왼쪽 Shift 키(`keyCode 56`)와 Space 키(`keyCode 49`)만 감지하여 오동작을 방지합니다.
+- ✅ TIS (Text Input Source) API를 직접 사용하여 안정적으로 입력 소스를 전환합니다.
+- ✅ Input Monitoring과 Accessibility 권한을 모두 사용하여 단축키를 안정적으로 감지하고 공백 입력을 억제합니다.
+- ✅ 영어/한글 화이트리스트 방식으로 지원되는 입력 소스 쌍이 없으면 메뉴가 비활성화되고 트리거가 무시됩니다.
+- ✅ Shift를 누른 채로 Space를 여러 번 눌러 빠르게 전환할 수 있는 멀티탭 모드 (90ms 디바운스).
+- ✅ 전환 시 "A" 또는 "가"를 0.45초 동안 표시하는 미니 HUD.
+- ✅ 비밀번호 입력창 등의 보안 입력 상태를 감지하여 전환을 일시 중지하고 상태 아이콘 툴팁을 업데이트합니다.
+- ✅ `.tapDisabledByTimeout` 및 `.tapDisabledByUserInput` 이벤트 발생 시 자동 복구.
+- ✅ macOS 시작 시 자동 실행을 위한 로그인 항목 지원 (추가 권한 불필요).
 
-## Project layout
+## 프로젝트 구조
 
 ```
 ShiftSpaceSwitcher/
@@ -34,33 +34,33 @@ ShiftSpaceSwitcher/
    └─ main.swift
 ```
 
-## Build & run
+## 빌드 및 실행
 
-1. Open `ShiftSpaceSwitcher.xcodeproj` in Xcode 15 (or newer) on macOS 13+.
-2. Select the **Korean Shifter** scheme and build/run. The app launches as a UI element, so it will not appear in the Dock.
-3. Click the menu bar icon and enable the app. You will be prompted to grant **Input Monitoring** and **Accessibility** permissions.
-4. After granting both permissions, click the enable toggle again to activate the app.
+1. macOS 13+ 환경에서 Xcode 15 이상으로 `ShiftSpaceSwitcher.xcodeproj`를 엽니다.
+2. **Korean Shifter** 스킴을 선택하고 빌드/실행합니다. 앱은 UI 요소로 실행되므로 Dock에 나타나지 않습니다.
+3. 메뉴바 아이콘을 클릭하고 앱을 활성화합니다. **Input Monitoring**과 **Accessibility** 권한을 부여하라는 안내가 표시됩니다.
+4. 두 권한을 모두 부여한 후 활성화 토글을 다시 클릭하여 앱을 활성화합니다.
 
-## Usage tips
+## 사용 방법
 
-- The menu bar icon displays the active layout ("A" for English, "가" for Korean). When permissions are missing or Secure Input is active, the tooltip explains the issue.
-- The **활성화** toggle enables/disables the CGEvent tap; click again after granting permissions to reactivate the tap.
-- **한/영 전환 미니 알림** shows a brief HUD overlay when switching languages.
-- Shift를 누른 채 Space를 반복 입력하면 멀티탭 기능으로 빠르게 전환할 수 있습니다.
-- **로그인 시 자동 실행** registers the app to launch automatically on macOS startup.
-- The **About** item summarizes the required permissions.
+- 메뉴바 아이콘은 현재 입력 언어를 표시합니다 (영어: "A", 한글: "가"). 권한이 없거나 보안 입력 상태일 때는 툴팁에 문제 설명이 표시됩니다.
+- **활성화** 토글은 CGEvent tap을 활성화/비활성화합니다. 권한을 부여한 후 다시 클릭하여 tap을 재활성화해야 합니다.
+- **한/영 전환 미니 알림**을 활성화하면 언어 전환 시 짧은 HUD 오버레이가 표시됩니다.
+- Shift를 누른 채 Space를 반복해서 눌러 멀티탭 기능으로 빠르게 전환할 수 있습니다.
+- **로그인 시 자동 실행**을 활성화하면 macOS 시작 시 앱이 자동으로 실행됩니다.
+- **정보** 메뉴 항목에서 필요한 권한 정보를 확인할 수 있습니다.
 
-## Permissions
+## 필요한 권한
 
-- **Input Monitoring** (required): Allows the app to observe the left Shift + Space key combination
-  - The app automatically re-seeds itself after installation so the toggle appears in System Settings
-  - URL: `x-apple.systempreferences:com.apple.preference.security?Privacy_ListenEvent`
-- **Accessibility** (required): Allows the app to register a trusted event tap and suppress the trigger space key
-  - The first enable action triggers the macOS trust prompt and then opens the pane if still disabled
-  - URL: `x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility`
+- **Input Monitoring** (필수): 왼쪽 Shift + Space 키 조합을 감지하기 위해 필요합니다.
+  - 앱이 설치 후 자동으로 시스템 설정에 등록되도록 초기화합니다.
+  - 설정 경로: `x-apple.systempreferences:com.apple.preference.security?Privacy_ListenEvent`
+- **Accessibility** (필수): 신뢰할 수 있는 event tap을 등록하고 트리거 Space 키를 억제하기 위해 필요합니다.
+  - 첫 활성화 시 macOS 신뢰 프롬프트가 표시되며, 비활성 상태인 경우 설정 창을 엽니다.
+  - 설정 경로: `x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility`
 
-## Known limitations
+## 알려진 제한사항
 
-- The project targets macOS 13+. Earlier systems may require deployment target adjustments.
-- Secure Input detection relies on the undocumented `CGSIsSecureEventInputEnabled` symbol, which is commonly used in utilities but remains private to macOS.
-- If either the Input Monitoring or Accessibility permission is revoked, the app disables itself until both are restored.
+- 프로젝트는 macOS 13 이상을 대상으로 합니다. 이전 버전에서는 배포 타겟 조정이 필요할 수 있습니다.
+- 보안 입력 감지는 문서화되지 않은 `CGSIsSecureEventInputEnabled` 심볼을 사용하지만, 많은 유틸리티에서 일반적으로 사용되는 macOS 비공개 API입니다.
+- Input Monitoring 또는 Accessibility 권한 중 하나라도 취소되면 앱은 두 권한이 모두 복원될 때까지 비활성화됩니다.
