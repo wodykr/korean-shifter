@@ -1,6 +1,16 @@
 import AppKit
 
 final class TinyHUD {
+    private final class ConstrainedContentView: NSView {
+        override func layout() {
+            super.layout()
+        }
+
+        override func updateConstraints() {
+            super.updateConstraints()
+        }
+    }
+
     private let window: NSWindow
     private let textField: NSTextField
     private let displayDuration: TimeInterval = 0.45
@@ -23,7 +33,7 @@ final class TinyHUD {
         textField.alignment = .center
         textField.translatesAutoresizingMaskIntoConstraints = false
 
-        let contentView = NSView(frame: contentRect)
+        let contentView = ConstrainedContentView(frame: contentRect)
         contentView.wantsLayer = true
         contentView.layer?.cornerRadius = 16
         contentView.layer?.backgroundColor = NSColor(calibratedWhite: 0, alpha: 0.55).cgColor
@@ -38,12 +48,18 @@ final class TinyHUD {
     }
 
     func show(symbol: String) {
+        show(symbol: symbol, animated: true)
+    }
+
+    func show(symbol: String, animated: Bool) {
         DispatchQueue.main.async { [weak self] in
-            self?.present(symbol: symbol)
+            guard let self else { return }
+            self.window.layoutIfNeeded()
+            self.present(symbol: symbol, animated: animated)
         }
     }
 
-    private func present(symbol: String) {
+    private func present(symbol: String, animated: Bool) {
         hideWorkItem?.cancel()
         textField.stringValue = symbol
 
@@ -61,17 +77,27 @@ final class TinyHUD {
             window.makeKeyAndOrderFront(nil)
         }
 
-        NSAnimationContext.runAnimationGroup { context in
-            context.duration = 0.15
-            window.animator().alphaValue = 1
+        if animated {
+            NSAnimationContext.runAnimationGroup { context in
+                context.duration = 0.15
+                window.animator().alphaValue = 1
+            }
+        } else {
+            window.alphaValue = 1
+            window.orderFront(nil)
         }
 
         let workItem = DispatchWorkItem { [weak self] in
             guard let self else { return }
-            NSAnimationContext.runAnimationGroup { context in
-                context.duration = 0.15
-                self.window.animator().alphaValue = 0
-            } completionHandler: {
+            if animated {
+                NSAnimationContext.runAnimationGroup { context in
+                    context.duration = 0.15
+                    self.window.animator().alphaValue = 0
+                } completionHandler: {
+                    self.window.orderOut(nil)
+                }
+            } else {
+                self.window.alphaValue = 0
                 self.window.orderOut(nil)
             }
         }

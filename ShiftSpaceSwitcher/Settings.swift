@@ -5,10 +5,10 @@ final class AppSettings {
 
     private enum Key: String {
         case isEnabled
-        case disableAnimation
         case showMiniHUD
-        case methodRawValue
         case multiTapEnabled
+        case loginItemEnabled
+        case disableAnimation
     }
 
     private let defaults: UserDefaults
@@ -20,22 +20,17 @@ final class AppSettings {
 
     private func registerDefaults() {
         defaults.register(defaults: [
-            Key.isEnabled.rawValue: true,
-            Key.disableAnimation.rawValue: true,
+            Key.isEnabled.rawValue: false,  // Start disabled, user must explicitly enable
             Key.showMiniHUD.rawValue: false,
-            Key.methodRawValue.rawValue: InputSwitch.Method.tisToggle.rawValue,
-            Key.multiTapEnabled.rawValue: true
+            Key.multiTapEnabled.rawValue: true,
+            Key.loginItemEnabled.rawValue: false,
+            Key.disableAnimation.rawValue: false
         ])
     }
 
     var isEnabled: Bool {
         get { defaults.bool(forKey: Key.isEnabled.rawValue) }
         set { defaults.set(newValue, forKey: Key.isEnabled.rawValue) }
-    }
-
-    var disableAnimation: Bool {
-        get { defaults.bool(forKey: Key.disableAnimation.rawValue) }
-        set { defaults.set(newValue, forKey: Key.disableAnimation.rawValue) }
     }
 
     var showMiniHUD: Bool {
@@ -48,13 +43,13 @@ final class AppSettings {
         set { defaults.set(newValue, forKey: Key.multiTapEnabled.rawValue) }
     }
 
-    var method: InputSwitch.Method {
-        get {
-            let rawValue = defaults.integer(forKey: Key.methodRawValue.rawValue)
-            return InputSwitch.Method(rawValue: rawValue) ?? .tisToggle
-        }
-        set {
-            defaults.set(newValue.rawValue, forKey: Key.methodRawValue.rawValue)
-        }
+    var loginItemEnabled: Bool {
+        get { defaults.bool(forKey: Key.loginItemEnabled.rawValue) }
+        set { defaults.set(newValue, forKey: Key.loginItemEnabled.rawValue) }
+    }
+
+    var disableAnimation: Bool {
+        get { defaults.bool(forKey: Key.disableAnimation.rawValue) }
+        set { defaults.set(newValue, forKey: Key.disableAnimation.rawValue) }
     }
 }

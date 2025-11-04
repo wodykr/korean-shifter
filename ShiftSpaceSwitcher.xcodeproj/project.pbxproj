@@ -15,6 +15,7 @@ objects = {
 8E97A1103C7B44BEB23BDDEB /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1875F912AF1546D78AAF7A1D /* Settings.swift */; };
 B9BF720EA8B045E291688D3C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCE368155FF45068433A5CC /* main.swift */; };
 	3ACA04497B334402BA3D84DC /* SecureInputMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8B66B54F0F4A6690BF03A3 /* SecureInputMonitor.swift */; };
+	4B5A89C3D7E24F1FA8B9E123 /* LoginItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7F45A1B2C34E8D9F1A2B3C /* LoginItemManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@ ADCE368155FF45068433A5CC /* main.swift */ = {isa = PBXFileReference; lastKnownFi
 00A5E04E8D374942938007AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 79FA0E95176246B2BB88CBCA /* ShiftSpaceSwitcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShiftSpaceSwitcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 	AF8B66B54F0F4A6690BF03A3 /* SecureInputMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureInputMonitor.swift; sourceTree = "<group>"; };
+	9D7F45A1B2C34E8D9F1A2B3C /* LoginItemManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginItemManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,8 @@ D609DC7F30924CF9947A7951 /* TinyHUD.swift */,
 7A62F60807A14083A2956962 /* StatusMenu.swift */,
 26C6380C71314CBD8B631E71 /* Permissions.swift */,
 1875F912AF1546D78AAF7A1D /* Settings.swift */,
+AF8B66B54F0F4A6690BF03A3 /* SecureInputMonitor.swift */,
+9D7F45A1B2C34E8D9F1A2B3C /* LoginItemManager.swift */,
 ADCE368155FF45068433A5CC /* main.swift */,
 00A5E04E8D374942938007AC /* Info.plist */,
 );
@@ -134,6 +138,8 @@ files = (
 91B1C999EC3346EC89C6F8B7 /* StatusMenu.swift in Sources */,
 8F58E71B8041475DBAF3C714 /* Permissions.swift in Sources */,
 8E97A1103C7B44BEB23BDDEB /* Settings.swift in Sources */,
+3ACA04497B334402BA3D84DC /* SecureInputMonitor.swift in Sources */,
+4B5A89C3D7E24F1FA8B9E123 /* LoginItemManager.swift in Sources */,
 B9BF720EA8B045E291688D3C /* main.swift in Sources */,
 );
 runOnlyForDeploymentPostprocessing = 0;

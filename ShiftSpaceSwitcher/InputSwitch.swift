@@ -1,35 +1,7 @@
 import Foundation
 import Carbon.HIToolbox
-import ApplicationServices
 
 final class InputSwitch {
-    enum Method: Int, CaseIterable {
-        case capsLock = 0
-        case tisToggle = 1
-        case shortcut = 2
-
-        var title: String {
-            switch self {
-            case .capsLock:
-                return "방안 A: CapsLock"
-            case .tisToggle:
-                return "방안 B: 입력 소스 직접 전환"
-            case .shortcut:
-                return "방안 C: 시스템 단축키"
-            }
-        }
-
-        var requiresAccessibility: Bool {
-            switch self {
-            case .capsLock, .shortcut:
-                return true
-            case .tisToggle:
-                return false
-            }
-        }
-    }
-
-    static let syntheticEventTag: Int64 = 0x53534846 // 'SHF'
 
     private static let englishSourceIDs: Set<String> = [
         "com.apple.keylayout.ABC",
@@ -49,28 +21,42 @@ final class InputSwitch {
     }
 
     func refreshInputSources() {
+        print("🔍 InputSwitch.refreshInputSources()")
         englishSource = nil
         koreanSource = nil
 
-        guard let unmanagedList = TISCreateInputSourceList(nil, false) else { return }
+        guard let unmanagedList = TISCreateInputSourceList(nil, false) else {
+            print("  ❌ Failed to create input source list")
+            return
+        }
         let sourceList = unmanagedList.takeRetainedValue()
         let count = CFArrayGetCount(sourceList)
+        print("  - Found \(count) input sources")
 
         for index in 0..<count {
             let rawValue = CFArrayGetValueAtIndex(sourceList, index)
             let source = unsafeBitCast(rawValue, to: TISInputSource.self)
             guard isEnabledSource(source) else { continue }
 
+            if let identifier = inputSourceID(source) {
+                print("  - Enabled source: \(identifier)")
+            }
+
             if englishSource == nil, let identifier = inputSourceID(source), Self.englishSourceIDs.contains(identifier) {
+                print("    ✅ Found English source: \(identifier)")
                 englishSource = source
                 continue
             }
 
             if koreanSource == nil, let identifier = inputSourceID(source), Self.koreanSourceIDs.contains(identifier) {
+                print("    ✅ Found Korean source: \(identifier)")
                 koreanSource = source
                 continue
             }
         }
+
+        print("  - English source: \(englishSource != nil ? "✅" : "❌")")
+        print("  - Korean source: \(koreanSource != nil ? "✅" : "❌")")
     }
 
     var hasSupportedPair: Bool {
@@ -89,68 +75,42 @@ final class InputSwitch {
         return "?"
     }
 
-    func toggle(using method: Method) -> Bool {
+    func toggle() -> Bool {
+        print("🔄 InputSwitch.toggle() called")
         refreshInputSources()
-        guard let englishSource = englishSource, let koreanSource = koreanSource else { return false }
-
-        switch method {
-        case .capsLock:
-            return synthesizeCapsLock()
-        case .tisToggle:
-            return toggleUsingTIS(english: englishSource, korean: koreanSource)
-        case .shortcut:
-            return synthesizeShortcut()
+        guard let englishSource = englishSource, let koreanSource = koreanSource else {
+            print("  ❌ Missing English or Korean source")
+            return false
         }
+
+        return toggleUsingTIS(english: englishSource, korean: koreanSource)
     }
 
     private func toggleUsingTIS(english: TISInputSource, korean: TISInputSource) -> Bool {
-        guard let currentID = currentInputSourceID() else { return false }
+        guard let currentID = currentInputSourceID() else {
+            print("  ❌ Cannot get current input source ID")
+            return false
+        }
+
+        print("  - Current input source: \(currentID)")
+
         let target: TISInputSource
         if Self.koreanSourceIDs.contains(currentID) {
+            print("  - Switching from Korean to English")
             target = english
         } else if Self.englishSourceIDs.contains(currentID) {
+            print("  - Switching from English to Korean")
             target = korean
         } else {
-            // Current language outside of whitelist, bail out safely.
+            print("  ❌ Current language '\(currentID)' not in whitelist")
             return false
         }
 
         let status = TISSelectInputSource(target)
-        return status == noErr
-    }
-
-    private func synthesizeCapsLock() -> Bool {
-        guard let source = CGEventSource(stateID: .hidSystemState) else { return false }
-        source.userData = Self.syntheticEventTag
-        guard let capsDown = CGEvent(keyboardEventSource: source, virtualKey: UInt16(kVK_CapsLock), keyDown: true) else { return false }
-        capsDown.post(tap: .cghidEventTap)
-        return true
-    }
-
-    private func synthesizeShortcut() -> Bool {
-        guard let source = CGEventSource(stateID: .hidSystemState) else { return false }
-        source.userData = Self.syntheticEventTag
-
-        guard
-            let optionDown = CGEvent(keyboardEventSource: source, virtualKey: UInt16(kVK_Option), keyDown: true),
-            let spaceDown = CGEvent(keyboardEventSource: source, virtualKey: UInt16(kVK_Space), keyDown: true),
-            let spaceUp = CGEvent(keyboardEventSource: source, virtualKey: UInt16(kVK_Space), keyDown: false),
-            let optionUp = CGEvent(keyboardEventSource: source, virtualKey: UInt16(kVK_Option), keyDown: false)
-        else { return false }
-
-        optionDown.flags = [.maskAlternate]
-        optionDown.post(tap: .cghidEventTap)
-
-        spaceDown.flags = [.maskAlternate]
-        spaceDown.post(tap: .cghidEventTap)
-
-        spaceUp.flags = [.maskAlternate]
-        spaceUp.post(tap: .cghidEventTap)
-
-        optionUp.flags = []
-        optionUp.post(tap: .cghidEventTap)
-
-        return true
+        print("  - TISSelectInputSource status: \(status)")
+        let success = status == noErr
+        print("  - Result: \(success ? "✅ Success" : "❌ Failed")")
+        return success
     }
 
     private func currentInputSourceID() -> String? {
@@ -160,20 +120,14 @@ final class InputSwitch {
     }
 
     private func inputSourceID(_ source: TISInputSource) -> String? {
-        guard let unmanaged = TISGetInputSourceProperty(source, kTISPropertyInputSourceID) else { return nil }
-        let value = unmanaged.takeUnretainedValue()
-        return value as? String
+        guard let rawValue = TISGetInputSourceProperty(source, kTISPropertyInputSourceID) else { return nil }
+        let value = Unmanaged<CFString>.fromOpaque(rawValue).takeUnretainedValue()
+        return value as String
     }
 
     private func isEnabledSource(_ source: TISInputSource) -> Bool {
-        guard let unmanaged = TISGetInputSourceProperty(source, kTISPropertyInputSourceIsEnabled) else { return false }
-        let value = unmanaged.takeUnretainedValue()
-        if let number = value as? NSNumber {
-            return number.boolValue
-        }
-        if CFGetTypeID(value) == CFBooleanGetTypeID() {
-            return CFBooleanGetValue((value as! CFBoolean))
-        }
-        return false
+        guard let rawValue = TISGetInputSourceProperty(source, kTISPropertyInputSourceIsEnabled) else { return false }
+        let value = Unmanaged<CFBoolean>.fromOpaque(rawValue).takeUnretainedValue()
+        return CFBooleanGetValue(value)
     }
 }
