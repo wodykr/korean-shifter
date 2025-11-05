@@ -1,20 +1,12 @@
 import AppKit
 
 final class TinyHUD {
-    private final class ConstrainedContentView: NSView {
-        override func layout() {
-            super.layout()
-        }
-
-        override func updateConstraints() {
-            super.updateConstraints()
-        }
-    }
-
     private let window: NSWindow
     private let textField: NSTextField
     private let displayDuration: TimeInterval = 0.45
     private var hideWorkItem: DispatchWorkItem?
+    // Token increments on each show to invalidate stale hide animations.
+    private var presentationToken: UInt64 = 0
 
     init() {
         let contentRect = NSRect(x: 0, y: 0, width: 96, height: 96)
@@ -33,7 +25,7 @@ final class TinyHUD {
         textField.alignment = .center
         textField.translatesAutoresizingMaskIntoConstraints = false
 
-        let contentView = ConstrainedContentView(frame: contentRect)
+        let contentView = NSView(frame: contentRect)
         contentView.wantsLayer = true
         contentView.layer?.cornerRadius = 16
         contentView.layer?.backgroundColor = NSColor(calibratedWhite: 0, alpha: 0.55).cgColor
@@ -61,6 +53,9 @@ final class TinyHUD {
 
     private func present(symbol: String, animated: Bool) {
         hideWorkItem?.cancel()
+        hideWorkItem = nil
+        presentationToken &+= 1
+        let currentToken = presentationToken
         textField.stringValue = symbol
 
         guard let screen = NSScreen.main else { return }
@@ -89,11 +84,14 @@ final class TinyHUD {
 
         let workItem = DispatchWorkItem { [weak self] in
             guard let self else { return }
+            guard self.presentationToken == currentToken else { return }
+            self.hideWorkItem = nil
             if animated {
                 NSAnimationContext.runAnimationGroup { context in
                     context.duration = 0.15
                     self.window.animator().alphaValue = 0
                 } completionHandler: {
+                    guard self.presentationToken == currentToken else { return }
                     self.window.orderOut(nil)
                 }
             } else {

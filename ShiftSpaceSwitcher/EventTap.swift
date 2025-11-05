@@ -76,8 +76,6 @@ final class EventTap {
         }
         if let source = runLoopSource {
             CFRunLoopRemoveSource(CFRunLoopGetMain(), source, .commonModes)
-        }
-        if let source = runLoopSource {
             CFRunLoopSourceInvalidate(source)
         }
         eventTap = nil

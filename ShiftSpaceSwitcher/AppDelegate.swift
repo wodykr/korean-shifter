@@ -98,10 +98,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         print("  - AXIsProcessTrusted: \(hasAccessibilityPermission)")
         needsAccessibilityPermission = !hasAccessibilityPermission
 
-        if hasInputPermission {
-            _ = ensureInputMonitoringRegistration(allowPrompt: false)
-        }
-
         // If we have permission and settings say enabled, start the tap
         // Otherwise, just update state (which will keep tap stopped)
         updateEventTap()
