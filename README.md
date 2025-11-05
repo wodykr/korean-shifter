@@ -82,6 +82,27 @@ ShiftSpaceSwitcher/
 - 보안 입력 감지는 문서화되지 않은 `CGSIsSecureEventInputEnabled` 심볼을 사용하지만, 많은 유틸리티에서 일반적으로 사용되는 macOS 비공개 API입니다.
 - Input Monitoring 또는 Accessibility 권한 중 하나라도 취소되면 앱은 두 권한이 모두 복원될 때까지 비활성화됩니다.
 
+## 변경 이력 (Changelog)
+
+### v0.1.2 (2025-01-05)
+**개선 사항 (Code Quality)**
+- 🐛 메모리 관리 이슈 수정
+  - `Permissions.swift`: `kAXTrustedCheckOptionPrompt` 메모리 누수 수정 (takeRetainedValue → takeUnretainedValue)
+  - `SecureInputMonitor.swift`: dlopen 핸들 메모리 누수 수정 (dlclose 추가)
+- 🧹 코드 품질 개선
+  - `EventTap.swift`: runLoopSource 중복 체크 제거
+  - `AppDelegate.swift`: 불필요한 중복 권한 체크 제거
+  - `TinyHUD.swift`: 사용되지 않는 빈 ConstrainedContentView 클래스 제거
+
+### v0.1.1 (2024-12-31)
+**초기 공개 릴리즈**
+- ✨ 왼쪽 Shift + Space로 한/영 전환 기능
+- ✨ 멀티탭 모드 (90ms 디바운스)
+- ✨ 미니 HUD 전환 알림
+- ✨ 보안 입력 감지
+- ✨ 로그인 시 자동 실행
+- ✨ Input Monitoring 및 Accessibility 권한 관리
+
 ## 라이선스 및 오픈소스
 
 이 프로젝트는 개발자 본인이 필요해서 바이브코딩으로 뚝딱 만든 도구입니다. 🛠️
