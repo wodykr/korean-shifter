@@ -15,7 +15,7 @@ enum Permissions {
 
     @discardableResult
     static func promptForAccessibilityPermission() -> Bool {
-        let options: CFDictionary = [kAXTrustedCheckOptionPrompt.takeRetainedValue() as NSString: true] as CFDictionary
+        let options: CFDictionary = [kAXTrustedCheckOptionPrompt.takeUnretainedValue() as NSString: true] as CFDictionary
         return AXIsProcessTrustedWithOptions(options)
     }
 }

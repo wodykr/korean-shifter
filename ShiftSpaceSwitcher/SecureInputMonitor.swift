@@ -12,6 +12,7 @@ final class SecureInputMonitor {
         guard let handle = dlopen("/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics", RTLD_NOW) else {
             return nil
         }
+        defer { dlclose(handle) }
         guard let symbol = dlsym(handle, "CGSIsSecureEventInputEnabled") else {
             return nil
         }
