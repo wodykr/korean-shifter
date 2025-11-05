@@ -84,7 +84,7 @@ ShiftSpaceSwitcher/
 
 ## 변경 이력 (Changelog)
 
-### v0.1.2 (2025-01-05)
+### v0.1.2 (2025-11-05)
 **개선 사항 (Code Quality)**
 - 🐛 메모리 관리 이슈 수정
   - `Permissions.swift`: `kAXTrustedCheckOptionPrompt` 메모리 누수 수정 (takeRetainedValue → takeUnretainedValue)
@@ -94,7 +94,7 @@ ShiftSpaceSwitcher/
   - `AppDelegate.swift`: 불필요한 중복 권한 체크 제거
   - `TinyHUD.swift`: 사용되지 않는 빈 ConstrainedContentView 클래스 제거
 
-### v0.1.1 (2024-12-31)
+### v0.1.1 (2025-11-04)
 **초기 공개 릴리즈**
 - ✨ 왼쪽 Shift + Space로 한/영 전환 기능
 - ✨ 멀티탭 모드 (90ms 디바운스)
@@ -115,7 +115,7 @@ ShiftSpaceSwitcher/
 ```
 MIT License
 
-Copyright (c) 2024 Korean Shifter Contributors
+Copyright (c) 2025 Korean Shifter Contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
